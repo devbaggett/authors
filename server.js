@@ -11,68 +11,68 @@ console.log(__dirname + '/AuthorsApp/dist');
 
 mongoose.connect("mongodb://localhost/authors");
 
-var TaskSchema = new mongoose.Schema({
-	title: {type: String},
-	description: {type: String, default: ""},
-	completed: {type: Boolean, default: false},
-	updated_at: {type: Date, default: Date.now},
-	created_at: {type: Date, default: Date.now}
-}, {versionKey: false});
+var AuthorSchema = new mongoose.Schema({
+	name: {type: String, required: true, minlength: 3 }},
+	{ timestamps: true }, {versionKey: false});
 
-mongoose.model('Task', TaskSchema);
-var Task = mongoose.model('Task');
+mongoose.model('Author', AuthorSchema);
+var Author = mongoose.model('Author');
 
 mongoose.Promise = global.Promise;
 
+
+
+
+
 // ********************* ROUTES *********************
 
-// CREATE A TASK
-app.post("/create", function(req, res){
-	var task = new Task(req.body);
-  	task.save(function(err, task){
+// ADD AUTHOR
+app.post("/add", function(req, res){
+	var author = new Author(req.body);
+  	author.save(function(err, author){
 		if(err){
 			console.log("ERROR: ", err);
 		}
 		else{
-			console.log('You successfully created a task.', task);
-			res.json({message: "Success", task: task});
+			console.log('You successfully created an author.', author);
+			res.json({message: "Success", author: author});
 		}
 	})
 })
 
-// RETRIEVE ALL TASKS
-app.get('/tasks', function(req, res){
-	Task.find({}, function(err, tasks){
-		if(err){
-			console.log("ERROR: ", err);
-			res.json({message: "ERROR", error: err});
-		}
-		else{
-			res.json({message: "Success", tasks: tasks})
-		}
-	})
-})
-
-// RETRIEVE A TASK BY ID
-app.get("/retrieve/:id", function(req, res){
-	Task.find({_id: req.params.id}, function(err, task){
+// RETRIEVE ALL AUTHORS
+app.get('/all', function(req, res){
+	Author.find({}, function(err, authors){
 		if(err){
 			console.log("ERROR: ", err);
 			res.json({message: "ERROR", error: err});
 		}
 		else{
-			res.json({task});
+			res.json({message: "Success", authors: authors})
 		}
 	})
 })
 
-// UPDATE A TASK BY ID
-app.put("/update/:id", function(req, res){
-	updated_task = {};
+// // RETRIEVE A TASK BY ID
+// app.get("/retrieve/:id", function(req, res){
+// 	Task.find({_id: req.params.id}, function(err, task){
+// 		if(err){
+// 			console.log("ERROR: ", err);
+// 			res.json({message: "ERROR", error: err});
+// 		}
+// 		else{
+// 			res.json({task});
+// 		}
+// 	})
+// })
+
+// EDIT AUTHOR BY ID
+app.put("/edit/:id", function(req, res){
+	edited_author = {};
 	if (req.body){
-		updated_task = req.body;
+		edited_author = req.body;
 	}
-	Task.update({_id: req.params.id}, updated_task, function(err){
+	Author.update({_id: req.params.id}, edited_author, function(err){
 		if(err){
 			console.log("ERROR: ", err);
 			res.json({message: "ERROR", error: err});
@@ -83,9 +83,9 @@ app.put("/update/:id", function(req, res){
 	});
 })
 
-// DELETE A TASK BY ID
+// DELETE AUTHOR BY ID
 app.delete("/delete/:id", function(req, res){
-	Task.remove({_id: req.params.id}, function(err){
+	Author.remove({_id: req.params.id}, function(err){
 		if(err){
 			console.log("ERROR: ", err);
 			res.json({message: "ERROR", error: err});
