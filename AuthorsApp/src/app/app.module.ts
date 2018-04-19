@@ -12,6 +12,7 @@ import { FormsModule } from '@angular/forms';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AddAuthorComponent } from './add-author/add-author.component';
 import { EditAuthorComponent } from './edit-author/edit-author.component';
+import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { EditAuthorComponent } from './edit-author/edit-author.component';
     AppComponent,
     DashboardComponent,
     AddAuthorComponent,
-    EditAuthorComponent
+    EditAuthorComponent,
+    PagenotfoundComponent
   ],
   imports: [
     BrowserModule,

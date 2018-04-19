@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
+// import after setup
 import { HttpService } from './http.service';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 
 @Component({
   	selector: 'app-root',
@@ -14,8 +16,17 @@ export class AppComponent implements OnInit{
    //  newTask: any;
    //  edit = false;
    //  editTask: any;
-  	constructor(private _httpService: HttpService){}
-  	ngOnInit(){}
+  	constructor(
+      private _httpService: HttpService,
+      private _route: ActivatedRoute,
+      private _router: Router){}
+  	ngOnInit(){
+      this._route.params.subscribe((params: Params) => console.log(params['id']));
+    }s
+    goHome() {
+    this._router.navigate(['/home']);
+  }
+}
       	// this.getTasksFromService();
         // this.newTask = { title: "", description: "" };
    //  }
@@ -70,4 +81,3 @@ export class AppComponent implements OnInit{
   	// 		})
   	// 	}
   	// }
-}
