@@ -96,7 +96,10 @@ app.delete("/delete/:id", function(req, res){
 	});
 })
 
-
+// catch-all route
+app.all("*", (req, res, next) => {
+    res.sendFile(path.resolve("./AuthorsApp/dist/index.html"))
+});
 
 var server = app.listen(8000, function(){
 	console.log("listening on port 8000");
