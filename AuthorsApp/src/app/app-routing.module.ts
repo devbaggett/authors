@@ -13,7 +13,7 @@ const routes: Routes = [
 	{ path: 'edit_author',component: EditAuthorComponent },
 	// use a colon and parameter name to include a parameter in the url
 	// { path: 'gamma/:id', component: GammaComponent },
-	{ path: '', pathMatch: 'full', redirectTo: '/alpha' },
+	{ path: '', pathMatch: 'full', redirectTo: '/dashboard' },
 	{ path: '**', component: PagenotfoundComponent }
 ];
 
