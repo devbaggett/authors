@@ -1,3 +1,6 @@
-<p>
-  edit-author works!
-</p>
+<div>
+	<form (submit)="editAuthorFromId(editAuthor._id)">
+		Name: <input type="text" name="editAuthor.name" [(ngModel)]="editAuthor.name">
+		<input type="submit" value="Edit Author">
+	</form>
+</div>

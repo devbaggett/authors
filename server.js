@@ -29,10 +29,7 @@ mongoose.Promise = global.Promise;
 
 // ADD AUTHOR
 app.post("/add", function(req, res){
-	// console.log("Asdf");
-	console.log(req.body);
 	var author = new Author(req.body);
-	console.log(author);
   	author.save(function(err, author){
 		if(err){
 			console.log("ERROR: ", err);
@@ -45,7 +42,7 @@ app.post("/add", function(req, res){
 })
 
 // RETRIEVE ALL AUTHORS
-app.get('/all', function(req, res){
+app.get('/authors', function(req, res){
 	Author.find({}, function(err, authors){
 		if(err){
 			console.log("ERROR: ", err);
@@ -57,18 +54,18 @@ app.get('/all', function(req, res){
 	})
 })
 
-// // RETRIEVE A TASK BY ID
-// app.get("/retrieve/:id", function(req, res){
-// 	Task.find({_id: req.params.id}, function(err, task){
-// 		if(err){
-// 			console.log("ERROR: ", err);
-// 			res.json({message: "ERROR", error: err});
-// 		}
-// 		else{
-// 			res.json({task});
-// 		}
-// 	})
-// })
+// RETRIEVE A TASK BY ID
+app.get("/retrieve/:id", function(req, res){
+	Author.find({_id: req.params.id}, function(err, author){
+		if(err){
+			console.log("ERROR: ", err);
+			res.json({message: "ERROR", error: err});
+		}
+		else{
+			res.json({message: "Success", author });
+		}
+	})
+})
 
 // EDIT AUTHOR BY ID
 app.put("/edit/:id", function(req, res){

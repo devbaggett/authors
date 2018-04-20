@@ -10,7 +10,7 @@ import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 const routes: Routes = [
 	{ path: 'dashboard',component: DashboardComponent },
 	{ path: 'add_author',component: AddAuthorComponent },
-	{ path: 'edit_author',component: EditAuthorComponent },
+	{ path: 'edit_author/:id',component: EditAuthorComponent },
 	// use a colon and parameter name to include a parameter in the url
 	// { path: 'gamma/:id', component: GammaComponent },
 	{ path: '', pathMatch: 'full', redirectTo: '/dashboard' },

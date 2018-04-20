@@ -9,6 +9,7 @@ import { HttpService } from '../http.service';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
+	authors = [];
 
   constructor(
     private _route: ActivatedRoute,
@@ -16,9 +17,20 @@ export class DashboardComponent implements OnInit {
     private _httpService: HttpService) { }
 
 	ngOnInit() {
-	}
-	addAuthor() {
-		this._router.navigate(['/dashboard']);
+		this.getAuthorsFromService();
 	}
 
+	getAuthorsFromService(){
+    	let observable = this._httpService.getAuthors();
+    	observable.subscribe(data => {
+    		console.log("Got our authors!", data);
+    		this.authors = data['authors'];
+    	});
+    }
+    deleteAuthorFromService(id){
+      let observable = this._httpService.deleteAuthor(id);
+      observable.subscribe(data => {
+        console.log("Deleted author!", data);
+      })
+    }
 }
