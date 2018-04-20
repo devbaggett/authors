@@ -1,3 +1,8 @@
-<p>
-  add-author works!
-</p>
+<div>
+	<form (submit)="addAuthorFromService()">
+	    <!-- use the json pipe to see how newTask changes in real time -->
+	    <p> {{ author | json }} </p>
+	    Name: <input type="text" name="author.name" [(ngModel)]="author.name">
+	    <input type="submit" value="Add Author">
+	</form>	
+</div>

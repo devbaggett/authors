@@ -7,10 +7,14 @@ import { HttpClient } from '@angular/common/http';
 @Injectable()
 export class HttpService {
 
-  constructor(private _http: HttpClient) {
-  	// this.getTasks();
-	// this.getTask();
-  }
+  	constructor(private _http: HttpClient) {
+	  	// this.getTasks();
+		// this.getTask();
+  	}
+  	addAuthor(author){
+  		// console.log("author is", author);
+		return this._http.post('/add', author);
+	}
 }
 //   getTasks(){
 // 		// let tempObservable = this._http.get('/tasks');
@@ -20,9 +24,7 @@ export class HttpService {
 // 	getTask(id){
 // 		return this._http.get('/retrieve/' + id);
 // 	}
-// 	createTask(task){
-// 		return this._http.post('/create', task);
-// 	}
+	
 // 	updateTask(id, updatedTask){
 // 		return this._http.put('/update/' + id, updatedTask);
 // 	}

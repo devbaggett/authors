@@ -5,6 +5,7 @@ var mongoose = require("mongoose");
 
 var app = express();
 
+app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 app.use(express.static(__dirname + '/AuthorsApp/dist'));
 console.log(__dirname + '/AuthorsApp/dist');
@@ -13,7 +14,7 @@ mongoose.connect("mongodb://localhost/authors");
 
 var AuthorSchema = new mongoose.Schema({
 	name: {type: String, required: true, minlength: 3 }},
-	{ timestamps: true }, {versionKey: false});
+	{ timestamps: true, versionKey: false});
 
 mongoose.model('Author', AuthorSchema);
 var Author = mongoose.model('Author');
@@ -28,7 +29,10 @@ mongoose.Promise = global.Promise;
 
 // ADD AUTHOR
 app.post("/add", function(req, res){
+	// console.log("Asdf");
+	console.log(req.body);
 	var author = new Author(req.body);
+	console.log(author);
   	author.save(function(err, author){
 		if(err){
 			console.log("ERROR: ", err);

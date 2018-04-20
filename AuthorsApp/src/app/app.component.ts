@@ -10,10 +10,10 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
   	styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit{
-  	// title = 'Restful Tasks API';
+  	title = 'Authors';
   	// tasks = [];
    //  task = {};
-   //  newTask: any;
+   
    //  edit = false;
    //  editTask: any;
   	constructor(
@@ -21,11 +21,9 @@ export class AppComponent implements OnInit{
       private _route: ActivatedRoute,
       private _router: Router){}
   	ngOnInit(){
-      this._route.params.subscribe((params: Params) => console.log(params['id']));
-    }s
-    goHome() {
-    this._router.navigate(['/home']);
-  }
+      // this._route.params.subscribe((params: Params) => console.log(params['id']));
+    }
+
 }
       	// this.getTasksFromService();
         // this.newTask = { title: "", description: "" };
@@ -47,14 +45,7 @@ export class AppComponent implements OnInit{
    //        console.log(this.task);
    //     })
    //  }
-   //  addTaskFromService(){
-   //    let observable = this._httpService.createTask(this.newTask);
-   //    observable.subscribe(data => {
-   //      console.log("Created task!", data);
-   //    })
-   //    this.getTasksFromService();
-   //    this.newTask = { title: "", description: ""};
-   //  }
+   //  
    //  editTaskFromService(id){
    //    let observable = this._httpService.updateTask(id, this.editTask);
    //    observable.subscribe(data => {
